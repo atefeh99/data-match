@@ -8,6 +8,7 @@ class Post extends Model
 {
 
     protected $table = 'post';
+    public $timestamps = false;
 
     public static function index($status, $rural_id, $is_matched)
     {

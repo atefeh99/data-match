@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 class Keshvar extends Model
 {
     protected $table = 'keshvar';
+    public $timestamps = false;
 
     public static function index($status, $rural_id, $is_matched)
     {
@@ -21,7 +22,12 @@ class Keshvar extends Model
     }
     public static function getVillageName($id)
     {
-        return self::where('id', $id)->get(['name_ok'])[0]->attributes['name_ok'];
+        //[0]->attributes['name_ok']
+        $village = self::where('id', $id)->first();
+
+        if (!$village) return null;
+        else return $village->name_ok;
+//        return ;
     }
 
     public static function isMatchedUpdate($id, $value)

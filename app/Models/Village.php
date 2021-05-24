@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 
 class Village extends Model
 {
+    use Common;
 
     protected $table = 'villages';
-    public $timestamps = false;
+//    public $timestamps = false;
     protected $fillable = [
         'name',
         'vk_id',
@@ -19,7 +20,7 @@ class Village extends Model
 
     public static function index()
     {
-        $villages['data'] = self::all(['name', 'id', 'post_id', 'vk_id', 'amar_id', 'creation_date']);
+        $villages['data'] = self::all();
         if (empty($villages)) throw new ModelNotFoundException();
         $villages['count'] = $villages['data']->count();
         return $villages;
@@ -39,21 +40,18 @@ class Village extends Model
 
     }
 
-    public static function create($data): array
+    public static function createItem($data)
     {
-
-        return self::create([
-            'name'=>$data['name'],
-            'post_id'=>$data['post_id'],
-            'vk_id'=>$data['vk_id'],
-            'amar_id'=>$data['amar_id'],
-            'creation_date'=>$data['creation_date']
-        ]);
+        return self::create($data);
     }
 
-    public function remove($id)
+    public static function remove($id)
     {
-        self:: destroy($id);
+       if( self::find($id)) {
+           self::where('id', $id)->delete($id);
+           return true;
+       } else throw new ModelNotFoundException();
+
     }
 
 }

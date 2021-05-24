@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 class Amar extends Model
 {
     protected $table = "amar";
+    public $timestamps = false;
 
     public static function index($rural_id, $is_matched)
     {

@@ -58,17 +58,18 @@ class MainService
 
     public static function storeMatchedVillages($data)
     {
+
         $count = Village::getVillageCount($data['post_id'],$data['vk_id'],$data['amar_id']);
         if ($count != 0) {
             return false;
         }
 
         $data['name']= keshvar::getVillageName($data['vk_id']); //village_name
-        $data['creation_date'] = Date::convertCarbonToJalali(Carbon::now());
+//        $data['creation_date'] = Date::convertCarbonToJalali(Carbon::now());
 
-        Village::create($data);
+        Village::createItem($data);
+
         Post::isMatchedUpdate($data['post_id'], true);
-        dd('save');
         Keshvar::isMatchedUpdate($data['vk_id'], true);
         Amar::isMatchedUpdate($data['amar_id'], true);
         return true;
@@ -90,7 +91,6 @@ class MainService
             Post::isMatchedUpdate($data['post_id'], false);
             Keshvar::isMatchedUpdate($data['vk_id'], false);
             Amar::isMatchedUpdate($data['amar_id'], false);
-
             return true;
         } else {
             return false;
