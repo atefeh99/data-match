@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "3fcca42c-f1c8-4f03-8873-a400b02cd0e5",
+		"name": "ابزارک پست ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "province/county/district/rural lists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "YourAPIKey",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/admin/7/list?$filter=district_id  eq 347 and province_id eq 34",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"admin",
+						"7",
+						"list"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "district_id  eq 347 and province_id eq 34"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "county lists",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "YourAPIKey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/admin/counties?$filter=province_id  eq 23",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"counties"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "province_id  eq 23"
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"odata.count\" : 10,\r\n    \"value\": [\r\n        {\r\n             \"id\":44,\r\n            \"name\" : \"shahrestan1\"\r\n        },\r\n        {\r\n            \"id\" : 55,\r\n            \"name\" : \"shahrestan2\"\r\n        }\r\n    ]\r\n        \r\n    \r\n}"
+				},
+				{
+					"name": "district lists",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "YourAPIKey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/admin/districts?$filter=county_id eq 44 ",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"districts"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "county_id eq 44 "
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"odata.count\" : 10,\r\n    \"value\": [\r\n        {\r\n             \"id\":11,\r\n            \"name\" : \"bakhsh1\"\r\n        },\r\n        {\r\n            \"id\" : 22,\r\n            \"name\" : \"bakhsh2\"\r\n        }\r\n    ]\r\n        \r\n    \r\n}"
+				},
+				{
+					"name": "rural lists",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "YourAPIKey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/admin/rurals?$filter=district_id eq 22",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"rurals"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "district_id eq 22"
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"odata.count\" : 10,\r\n    \"value\": [\r\n        {\r\n             \"id\": 23,\r\n            \"name\" : \"dehestan1\"\r\n        },\r\n        {\r\n            \"id\" : 99,\r\n            \"name\" : \"dehestan2\"\r\n        }\r\n    ]\r\n        \r\n    \r\n}"
+				},
+				{
+					"name": "province lists",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"type": "text",
+								"value": "YourAPIKey"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/admin/provinces",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"admin",
+								"provinces"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Access-Control-Request-Method",
+							"value": "GET",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"odata.count\" : 10,\r\n    \"value\": [\r\n        {\r\n             \"id\":78,\r\n            \"name\" : \"تهران\"\r\n        },\r\n        {\r\n            \"id\" : 91,\r\n            \"name\" : \"فارس\"\r\n        }\r\n    ]\r\n        \r\n    \r\n}"
+				}
+			]
+		},
+		{
+			"name": "not matched villages",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "YourAPIKey",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/villages/not-matched?$filter=dataset_name eq keshvar and rural_id eq  66 ",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"villages",
+						"not-matched"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": "dataset_name eq keshvar and rural_id eq  66 "
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "not matched villages",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "YourAPIKey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/villages/not-matched?$filter=rural_id eq 458 dataset_name eq post",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"villages",
+								"not-matched"
+							],
+							"query": [
+								{
+									"key": "$filter",
+									"value": "rural_id eq 458 dataset_name eq post"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"odata.count\" : 2,\r\n    \"value\": [\r\n        {\r\n             \"id\":25,\r\n            \"name\" : \"rusta1\"\r\n            \"lat\":52.36,\r\n            \"lon\":48.32\r\n        },\r\n        {\r\n            \"id\" : 51,\r\n            \"name\" : \"rusta2\",\r\n            \"lat\":52.36,\r\n            \"lon\":48.32\r\n        }\r\n    ]\r\n        \r\n    \r\n}"
+				}
+			]
+		},
+		{
+			"name": "save matched village",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "YourAPIKey",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"post_id\" : 60689, \"vk_id\" : 89, \"amar_id\" : 3}"
+				},
+				"url": {
+					"raw": "localhost:8000/villages/matched",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"villages",
+						"matched"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "save matched village",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-api-key",
+								"value": "YourAPIKey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"province_id\" : 1, \"county_id\" : 1, \"village_id\" : 3, \"table_name\" : \"post\"}"
+						},
+						"url": {
+							"raw": "localhost:8000/villages/matched",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"villages",
+								"matched"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Access-Control-Request-Method",
+							"value": "POST",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"code\" : 1000\r\n    \"status_code\" : 200\r\n    \"message\" : \"village match complete\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "matched villages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/villages/matched",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"villages",
+						"matched"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete matched village",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/village/12?$filter= post_id eq 27193 and vk_id eq 89 and amar_id eq 3",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"village",
+						"12"
+					],
+					"query": [
+						{
+							"key": "$filter",
+							"value": " post_id eq 27193 and vk_id eq 89 and amar_id eq 3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
