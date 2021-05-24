@@ -79,12 +79,10 @@ class MainController extends ApiController
                     $validate = Validator::make(['province_id' => (float)$item['right']], [
                         'province_id' => 'numeric|between:1,38'
                     ]);
-                    dd($item['right']);
                     if ($validate->fails()) {
                         return $this->respondInvalidParams('1002', $validate->errors(), 'bad request');
                     }
                     $province_id = (float)$item['right'];
-
 
                 }
 
