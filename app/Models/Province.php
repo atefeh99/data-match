@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 
 class Province extends Model
 {
-    protected $table = 'dims.province';
+    protected $table = "dims.province";
 
     public static function index()
     {
