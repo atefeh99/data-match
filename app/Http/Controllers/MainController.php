@@ -76,17 +76,20 @@ class MainController extends ApiController
         if (isset($odata_query['filter'])) {
             foreach ($odata_query['filter'] as $item) {
                 if ($item['left'] == 'province_id' && $item['operator'] == '=') {
-                    $validate = Validator::make(['province_id' => $item['right']], [
+                    $validate = Validator::make(['province_id' => (float)$item['right']], [
                         'province_id' => 'numeric|between:1,38'
                     ]);
+                    dd($item['right']);
                     if ($validate->fails()) {
                         return $this->respondInvalidParams('1002', $validate->errors(), 'bad request');
                     }
                     $province_id = (float)$item['right'];
+
+
                 }
 
                 if ($item['left'] == 'county_id' && $item['operator'] == '=') {
-                    $validate = Validator::make(['county_id' => $item['right']], [
+                    $validate = Validator::make(['county_id' => (float)$item['right']], [
                         'county_id' => 'numeric|between:1,443'
                     ]);
                     if ($validate->fails()) {
@@ -96,7 +99,7 @@ class MainController extends ApiController
                 }
 
                 if ($item['left'] == 'district_id' && $item['operator'] == '=') {
-                    $validate = Validator::make(['district_id' => $item['right']], [
+                    $validate = Validator::make(['district_id' => (float)$item['right']], [
                         'district_id' => 'numeric|between:1,653'
                     ]);
                     if ($validate->fails()) {
@@ -217,7 +220,6 @@ class MainController extends ApiController
     public function notMatchedVillages(Request $request)
     {
         $input = $this->filter($request);
-        $result = null;
         $fields = new MessageBag();
 
         if (!(is_object($input))) {
@@ -276,7 +278,7 @@ class MainController extends ApiController
             $data['post_id'] = $input['post_id'];
             $res = MainService::deleteMatchedVillages($id, $data);
             if ($res) {
-                $this->respondSuccessDelete($id, trans('messages.custom.delete'));
+                return $this->respondSuccessDelete($id, trans('messages.custom.delete'));
             } else {
                 return $this->respondNoFound('not found', 6000);
             }

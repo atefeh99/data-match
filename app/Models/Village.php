@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 
 
 class Village extends Model
 {
+    use Common;
 
     protected $table = 'villages';
-    public $timestamps = false;
+//    public $timestamps = false;
     protected $fillable = [
         'name',
         'vk_id',
@@ -19,8 +20,8 @@ class Village extends Model
 
     public static function index()
     {
-        $villages['data'] = self::all('name, id, post_id, vk_id, amar_id, creation_date');
-        if (empty($districts)) throw new ModelNotFoundException();
+        $villages['data'] = self::all();
+        if (empty($villages)) throw new ModelNotFoundException();
         $villages['count'] = $villages['data']->count();
         return $villages;
     }
@@ -36,16 +37,21 @@ class Village extends Model
             ->orWhere('vk_id', $vk_id)
             ->orWhere('amar_id', $amar_id)
             ->count();
+
     }
 
-    public static function create(array $data): array
+    public static function createItem($data)
     {
         return self::create($data);
     }
 
-    public function delete($id)
+    public static function remove($id)
     {
-        self:: destroy($id);
+       if( self::find($id)) {
+           self::where('id', $id)->delete($id);
+           return true;
+       } else throw new ModelNotFoundException();
+
     }
 
 }

@@ -20,7 +20,6 @@ class CreateVillagesTable extends Migration
             $table->integer('vk_id');
             $table->integer('amar_id');
             $table->timestamps();
-            $table->string('creation_date');
         });
     }
 
@@ -31,6 +30,6 @@ class CreateVillagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matchedvillages');
+        Schema::dropIfExists('villages');
     }
 }

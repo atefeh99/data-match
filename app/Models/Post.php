@@ -8,22 +8,22 @@ class Post extends Model
 {
 
     protected $table = 'post';
+    public $timestamps = false;
 
     public static function index($status, $rural_id, $is_matched)
     {
+
+
         $villages['data'] = self::status($status)
             ->rural($rural_id)
             ->isMatched($is_matched)
-            ->get('name, id');
-        if (empty($districts)) throw new ModelNotFoundException();
+            ->get(['name', 'id']);
+        if (empty($villages)) throw new ModelNotFoundException();
         $villages['count'] = $villages['data']->count();
         return $villages;
     }
 
-    public static function getVillageName($id)
-    {
-        return self::get('name')->where('id', $id);
-    }
+
 
     public static function isMatchedUpdate($id, $value)
     {
@@ -43,6 +43,6 @@ class Post extends Model
 
     public function scopeIsMatched($query, $is_matched)
     {
-        return $query->where('rural_id', $is_matched);
+        return $query->where('is_matched', $is_matched);
     }
 }
