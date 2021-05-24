@@ -313,7 +313,7 @@ class OdataQueryParser
         return array_map(function ($and) {
             $items = [];
 
-            preg_match("/(contains|\w+)\s?\(?(eq|ne|gt|ge|lt|le|in)?\s?\(?([a-zA-Z0-9 \"\.,'پچجحخهعغفقثصضشسیبلاتنمکگوئدذرزطظژؤإأءًٌٍَُِّ]*)\)?/", $and, $items);
+            preg_match("/(contains|\w+)\s*\(?(eq|ne|gt|ge|lt|le|in)?\s*(\(?([a-zA-Z0-9 \"\.,'پچجحخهعغفقثصضشسیبلاتنمکگوئدذرزطظژؤإأءًٌٍَُِّ]*)\)?/", $and, $items);
             if (count($items) > 0) {
                 if ($items[1] == 'contains') {
                     $item = explode(',', $items[3]);
