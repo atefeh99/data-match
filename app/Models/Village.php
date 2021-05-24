@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 
 
 class Village extends Model
@@ -19,8 +19,8 @@ class Village extends Model
 
     public static function index()
     {
-        $villages['data'] = self::all('name, id, post_id, vk_id, amar_id, creation_date');
-        if (empty($districts)) throw new ModelNotFoundException();
+        $villages['data'] = self::all(['name', 'id', 'post_id', 'vk_id', 'amar_id', 'creation_date']);
+        if (empty($villages)) throw new ModelNotFoundException();
         $villages['count'] = $villages['data']->count();
         return $villages;
     }
@@ -36,14 +36,22 @@ class Village extends Model
             ->orWhere('vk_id', $vk_id)
             ->orWhere('amar_id', $amar_id)
             ->count();
+
     }
 
-    public static function create(array $data): array
+    public static function create($data): array
     {
-        return self::create($data);
+
+        return self::create([
+            'name'=>$data['name'],
+            'post_id'=>$data['post_id'],
+            'vk_id'=>$data['vk_id'],
+            'amar_id'=>$data['amar_id'],
+            'creation_date'=>$data['creation_date']
+        ]);
     }
 
-    public function delete($id)
+    public function remove($id)
     {
         self:: destroy($id);
     }

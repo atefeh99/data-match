@@ -217,7 +217,6 @@ class MainController extends ApiController
     public function notMatchedVillages(Request $request)
     {
         $input = $this->filter($request);
-        $result = null;
         $fields = new MessageBag();
 
         if (!(is_object($input))) {

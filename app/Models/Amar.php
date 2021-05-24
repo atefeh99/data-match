@@ -6,12 +6,17 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 
 class Amar extends Model
 {
-    protected $table = 'amar';
+    protected $table = "amar";
 
-    public static function index()
+    public static function index($rural_id, $is_matched)
     {
-        $villages['data'] = self::get('name,fid as id, lat, long');
-        if (empty($districts)) throw new ModelNotFoundException();
+//
+//
+//
+        $villages['data'] = self::rural($rural_id)
+            ->isMatched($is_matched)
+            ->get(['name','fid as id', 'lat', 'long']);
+        if (empty($villages)) throw new ModelNotFoundException();
         $villages['count'] = $villages['data']->count();
         return $villages;
     }
@@ -20,5 +25,14 @@ class Amar extends Model
     {
         self::where('fid', $id)
             ->update((['is_matched' => $value]));
+    }
+    public function scopeRural($query, $rural_id)
+    {
+        return $query->where('rural_id', $rural_id);
+    }
+
+    public function scopeIsMatched($query, $is_matched)
+    {
+        return $query->where('is_matched', $is_matched);
     }
 }
