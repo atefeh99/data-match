@@ -27,8 +27,8 @@ class Post extends Model
 
     public static function isMatchedUpdate($id, $value)
     {
-        self::where('id', $id)
-            ->update((['is_matched' => $value]));
+        $item = self::findOrFail($id);
+        $item->update(['is_matched' => $value]);
     }
 
     public function scopeStatus($query, $status)

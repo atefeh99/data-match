@@ -10,7 +10,6 @@ class Village extends Model
     use Common;
 
     protected $table = 'villages';
-//    public $timestamps = false;
     protected $fillable = [
         'name',
         'vk_id',
@@ -33,6 +32,7 @@ class Village extends Model
      */
     public static function getVillageCount($post_id, $vk_id, $amar_id)
     {
+
         return self::where('post_id', $post_id)
             ->orWhere('vk_id', $vk_id)
             ->orWhere('amar_id', $amar_id)
@@ -47,12 +47,9 @@ class Village extends Model
 
     public static function remove($id)
     {
-       if( self::find($id)) {
-           self::where('id', $id)->delete($id);
-           return true;
-       } else throw new ModelNotFoundException();
-
+        $item = self::findOrFail($id);
+        $item->delete();
+        return $item;
     }
-
 }
 

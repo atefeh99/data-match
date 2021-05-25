@@ -22,18 +22,15 @@ class Keshvar extends Model
     }
     public static function getVillageName($id)
     {
-        //[0]->attributes['name_ok']
-        $village = self::where('id', $id)->first();
-
-        if (!$village) return null;
-        else return $village->name_ok;
-//        return ;
+        $village = self::findOrFail('id', $id);
+        return $village->name_ok;
     }
 
     public static function isMatchedUpdate($id, $value)
     {
-        self::where('id', $id)
-            ->update((['is_matched' => $value]));
+        $item = self::findOrFail($id);
+        $item->update(['is_matched' => $value]);
+
     }
 
     public function scopeKind($query, $status)
