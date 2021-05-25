@@ -47,12 +47,9 @@ class Village extends Model
 
     public static function remove($id)
     {
-       if( self::find($id)) {
-           self::where('id', $id)->delete($id);
-           return true;
-       } else throw new ModelNotFoundException();
-
+        $item = self::findOrFail($id);
+        $item->delete();
+        return $item;
     }
-
 }
 
