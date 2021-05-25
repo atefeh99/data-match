@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3fcca42c-f1c8-4f03-8873-a400b02cd0e5",
+		"_postman_id": "9ebd4538-089d-459e-9d51-6305cf04a9fe",
 		"name": "ابزارک پست ",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,20 +17,18 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8000/admin/7/list?$filter=district_id  eq 347 and province_id eq 34",
+					"raw": "{{url}}{{prefix}}/admin/rurals?$filter=district_id eq 22",
 					"host": [
-						"localhost"
+						"{{url}}{{prefix}}"
 					],
-					"port": "8000",
 					"path": [
 						"admin",
-						"7",
-						"list"
+						"rurals"
 					],
 					"query": [
 						{
 							"key": "$filter",
-							"value": "district_id  eq 347 and province_id eq 34"
+							"value": "district_id eq 22"
 						}
 					]
 				}
@@ -191,11 +189,10 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8000/villages/not-matched?$filter=dataset_name eq keshvar and rural_id eq  66 ",
+					"raw": "{{url}}{{prefix}}/villages/not-matched?$filter=dataset_name eq keshvar and rural_id eq  66 ",
 					"host": [
-						"localhost"
+						"{{url}}{{prefix}}"
 					],
-					"port": "8000",
 					"path": [
 						"villages",
 						"not-matched"
@@ -266,11 +263,10 @@
 					"raw": "{\"post_id\" : 60689, \"vk_id\" : 89, \"amar_id\" : 3}"
 				},
 				"url": {
-					"raw": "localhost:8000/villages/matched",
+					"raw": "{{url}}{{prefix}}/villages/matched",
 					"host": [
-						"localhost"
+						"{{url}}{{prefix}}"
 					],
-					"port": "8000",
 					"path": [
 						"villages",
 						"matched"
@@ -331,11 +327,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8000/villages/matched",
+					"raw": "{{url}}{{prefix}}/villages/matched",
 					"host": [
-						"localhost"
+						"{{url}}{{prefix}}"
 					],
-					"port": "8000",
 					"path": [
 						"villages",
 						"matched"
@@ -350,13 +345,11 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:8000/village/12?$filter= post_id eq 27193 and vk_id eq 89 and amar_id eq 3",
+					"raw": "{{url}}{{prefix}}villages/12?$filter= post_id eq 27193 and vk_id eq 89 and amar_id eq 3",
 					"host": [
-						"localhost"
+						"{{url}}{{prefix}}villages"
 					],
-					"port": "8000",
 					"path": [
-						"village",
 						"12"
 					],
 					"query": [
