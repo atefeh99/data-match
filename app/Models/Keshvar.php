@@ -22,16 +22,14 @@ class Keshvar extends Model
     }
     public static function getVillageName($id)
     {
-        //[0]->attributes['name_ok']
         $village = self::where('id', $id)->first();
-
-        if (!$village) return null;
+        if (!$village) throw new ModelNotFoundException();
         else return $village->name_ok;
-//        return ;
     }
 
     public static function isMatchedUpdate($id, $value)
     {
+        if (empty(self::where('id', $id)->get())) throw new ModelNotFoundException();
         self::where('id', $id)
             ->update((['is_matched' => $value]));
     }

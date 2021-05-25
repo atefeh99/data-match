@@ -27,6 +27,7 @@ class Post extends Model
 
     public static function isMatchedUpdate($id, $value)
     {
+        if (empty(self::where('id', $id)->get())) throw new ModelNotFoundException();
         self::where('id', $id)
             ->update((['is_matched' => $value]));
     }

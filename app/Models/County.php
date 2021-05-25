@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\{Model,  ModelNotFoundException};
 
-class County extends Model
+class  County extends Model
 {
     protected $table = "dims.county";
 
