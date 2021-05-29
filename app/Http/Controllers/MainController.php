@@ -88,7 +88,7 @@ class MainController extends ApiController
 
                 if ($item['left'] == 'county_id' && $item['operator'] == '=') {
                     $validate = Validator::make(['county_id' => (float)$item['right']], [
-                        'county_id' => 'numeric|between:1,443'
+                        'county_id' => 'numeric|between:1,452'
                     ]);
                     if ($validate->fails()) {
                         return $this->respondInvalidParams('1003', $validate->errors(), 'bad request');
@@ -98,7 +98,7 @@ class MainController extends ApiController
 
                 if ($item['left'] == 'district_id' && $item['operator'] == '=') {
                     $validate = Validator::make(['district_id' => (float)$item['right']], [
-                        'district_id' => 'numeric|between:1,653'
+                        'district_id' => 'numeric|between:1,1111'
                     ]);
                     if ($validate->fails()) {
                         return $this->respondInvalidParams('1004', $validate->errors(), 'bad request');
