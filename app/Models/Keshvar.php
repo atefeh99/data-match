@@ -8,6 +8,9 @@ class Keshvar extends Model
 {
     protected $table = 'keshvar';
     public $timestamps = false;
+    protected $fillable = [
+        'is_matched',
+    ];
 
     public static function index($status, $rural_id, $is_matched)
     {
@@ -22,7 +25,7 @@ class Keshvar extends Model
     }
     public static function getVillageName($id)
     {
-        $village = self::findOrFail('id', $id);
+        $village = self::findOrFail($id);
         return $village->name_ok;
     }
 

@@ -9,6 +9,9 @@ class Post extends Model
 
     protected $table = 'post';
     public $timestamps = false;
+    protected $fillable = [
+        'is_matched',
+    ];
 
     public static function index($status, $rural_id, $is_matched)
     {
