@@ -77,7 +77,7 @@ class MainController extends ApiController
             foreach ($odata_query['filter'] as $item) {
                 if ($item['left'] == 'province_id' && $item['operator'] == '=') {
                     $validate = Validator::make(['province_id' => (float)$item['right']], [
-                        'province_id' => 'numeric|between:1,38'
+                        'province_id' => 'numeric'
                     ]);
                     if ($validate->fails()) {
                         return $this->respondInvalidParams('1002', $validate->errors(), 'bad request');
@@ -88,7 +88,7 @@ class MainController extends ApiController
 
                 if ($item['left'] == 'county_id' && $item['operator'] == '=') {
                     $validate = Validator::make(['county_id' => (float)$item['right']], [
-                        'county_id' => 'numeric|between:1,443'
+                        'county_id' => 'numeric'
                     ]);
                     if ($validate->fails()) {
                         return $this->respondInvalidParams('1003', $validate->errors(), 'bad request');
@@ -98,7 +98,7 @@ class MainController extends ApiController
 
                 if ($item['left'] == 'district_id' && $item['operator'] == '=') {
                     $validate = Validator::make(['district_id' => (float)$item['right']], [
-                        'district_id' => 'numeric|between:1,653'
+                        'district_id' => 'numeric'
                     ]);
                     if ($validate->fails()) {
                         return $this->respondInvalidParams('1004', $validate->errors(), 'bad request');
@@ -108,7 +108,7 @@ class MainController extends ApiController
 
                 if ($item['left'] == 'rural_id' && $item['operator'] == '=') {
                     $validate = Validator::make(['rural_id' => (float)$item['right']], [
-                        'rural_id' => 'numeric|between:1,2643'
+                        'rural_id' => 'numeric'
                     ]);
                     if ($validate->fails()) {
                         return $this->respondInvalidParams('1005', $validate->errors(), 'bad request');
@@ -127,7 +127,7 @@ class MainController extends ApiController
                 }
                 if ($item['left'] == 'post_id' && $item['operator'] == '=') {
                     $validate = Validator::make(['post_id' => (float)$item['right']], [
-                        'post_id' => 'numeric|between:1,146571'
+                        'post_id' => 'numeric'
                     ]);
                     if ($validate->fails()) {
                         return $this->respondInvalidParams('1007', $validate->errors(), 'bad request');
@@ -136,7 +136,7 @@ class MainController extends ApiController
                 }
                 if ($item['left'] == 'vk_id' && $item['operator'] == '=') {
                     $validate = Validator::make(['vk_id' => (float)$item['right']], [
-                        'vk_id' => 'numeric|between:1,8268'
+                        'vk_id' => 'numeric'
                     ]);
                     if ($validate->fails()) {
                         return $this->respondInvalidParams('1008', $validate->errors(), 'bad request');
