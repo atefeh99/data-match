@@ -10,11 +10,28 @@ class Village extends Model
     use Common;
 
     protected $table = 'villages';
+    protected $connection = "default";
+
     protected $fillable = [
         'name',
         'vk_id',
         'amar_id',
         'post_id',
+        'partnumber',
+        'tournumber',
+        'ostantitle',
+        'bakhshtitle',
+        'shahrestantitle',
+        'dehestantitle',
+        'roostatitle',
+        'shahrtitle',
+        'abadititle',
+        'shahrroostaabadiid',
+        'status',
+        'province',
+        'county',
+        'district',
+        'rural',
     ];
 
     public static function index()

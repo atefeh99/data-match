@@ -50,7 +50,7 @@ $app->singleton(
 
 /*
 |--------------------------------------------------------------------------
-| Register Config Files
+| Register config Files
 |--------------------------------------------------------------------------
 |
 | Now we will register the "app" configuration file. If the file exists in
@@ -60,6 +60,8 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('database');
+
 
 /*
 |--------------------------------------------------------------------------

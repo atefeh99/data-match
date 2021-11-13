@@ -59,19 +59,24 @@ class MainService
     public static function storeMatchedVillages($data)
     {
 
-        $count = Village::getVillageCount($data['post_id'],$data['vk_id'],$data['amar_id']);
+        $count = Village::getVillageCount($data['post_id'], $data['vk_id'], $data['amar_id']);
         if ($count != 0) {
             return false;
         }
 
-        $data['name']= keshvar::getVillageName($data['vk_id']); //village_name
+        $data['name'] = keshvar::getVillageName($data['vk_id']); //village_name
+        $data_attach = self::addPostData($data['post_id']);
+        $data = array_merge($data, $data_attach);
+
 //        $data['creation_date'] = Date::convertCarbonToJalali(Carbon::now());
+
 
         Village::createItem($data);
 
         Post::isMatchedUpdate($data['post_id'], true);
         Keshvar::isMatchedUpdate($data['vk_id'], true);
         Amar::isMatchedUpdate($data['amar_id'], true);
+
         return true;
 
     }
@@ -95,5 +100,30 @@ class MainService
         } else {
             return false;
         }
+    }
+
+    public static function addPostData($post_id)
+    {
+        $data_attach = Post::getData($post_id);
+        if (isset($data_attach['province_id'])) {
+            $data_attach['province'] = Province::getOne($data_attach['province_id']);
+            unset($data_attach['province_id']);
+        }
+        if (isset($data_attach['county_id'])) {
+            $data_attach['county'] = County::getOne($data_attach['county_id']);
+            unset($data_attach['county_id']);
+        }
+        if (isset($data_attach['district_id'])) {
+            $data_attach['district'] = district::getOne($data_attach['district_id']);
+            unset($data_attach['district_id']);
+        }
+        if (isset($data_attach['rural_id'])) {
+            $data_attach['rural'] = rural::getOne($data_attach['rural_id']);
+            unset($data_attach['rural_id']);
+        }
+        unset($data_attach['is_matched']);
+        unset($data_attach['id']);
+        return $data_attach;
+//
     }
 }

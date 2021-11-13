@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 class Keshvar extends Model
 {
     protected $table = 'keshvar';
+    protected $connection = "pgsql";
+
     public $timestamps = false;
     protected $fillable = [
         'is_matched',

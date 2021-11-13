@@ -8,6 +8,8 @@ class Post extends Model
 {
 
     protected $table = 'post';
+    protected $connection = "pgsql";
+
     public $timestamps = false;
     protected $fillable = [
         'is_matched',
@@ -25,7 +27,16 @@ class Post extends Model
         $villages['count'] = $villages['data']->count();
         return $villages;
     }
+public static function getData($id)
+{
+    $item = self::where('id',$id)->get()->toArray();
+    if(count($item)>0){
+        return $item[0];
+    }
+    throw new ModelNotFoundException();
 
+
+}
 
 
     public static function isMatchedUpdate($id, $value)
