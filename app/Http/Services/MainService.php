@@ -14,6 +14,7 @@ use App\Models\{
 use Carbon\Carbon;
 use App\Models\Village;
 use App\Helpers\Date;
+use Illuminate\Support\Arr;
 
 
 class MainService
@@ -65,8 +66,7 @@ class MainService
         }
 
         $data['name'] = keshvar::getVillageName($data['vk_id']); //village_name
-        $data_attach = self::addPostData($data['post_id']);
-        $data = array_merge($data, $data_attach);
+
 
 //        $data['creation_date'] = Date::convertCarbonToJalali(Carbon::now());
 
@@ -83,7 +83,11 @@ class MainService
 
     public static function getMatchedVillages()
     {
-        $query = Village::index();
+        $out_fields = ['name',
+            'vk_id',
+            'amar_id',
+            'post_id',];
+        $query = Village::index($out_fields);
         $data = $query['data'];
         $count = $query['count'];
         return ['data' => $data, 'count' => $count];
@@ -102,9 +106,20 @@ class MainService
         }
     }
 
-    public static function addPostData($post_id)
+    public static function export()
     {
-        $data_attach = Post::getData($post_id);
+
+        $matched = Village::joinVillageWithPost();
+
+        dd(
+          $matched
+        );
+    }
+
+    public static function addPostData()
+    {
+//        $data_attach = Post::getData();
+
         if (isset($data_attach['province_id'])) {
             $data_attach['province'] = Province::getOne($data_attach['province_id']);
             unset($data_attach['province_id']);

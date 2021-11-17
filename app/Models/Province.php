@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 class Province extends Model
 {
     protected $table = "dims.province";
-    protected $connection = "pgsql";
+    protected $connection = "datamatch";
+
 
 
     public static function index()

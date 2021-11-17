@@ -43,7 +43,7 @@ return [
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
         ],
-        'default' => [
+        'datamatch' => [
             'driver' => 'pgsql',
             'host' => env('DB2_HOST'),
             'port' => env('DB2_PORT'),

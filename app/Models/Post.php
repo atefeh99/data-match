@@ -8,7 +8,9 @@ class Post extends Model
 {
 
     protected $table = 'post';
-    protected $connection = "pgsql";
+    protected $connection = "datamatch";
+    protected $hidden =[ 'province_id', 'district_id','county_id'];
+
 
     public $timestamps = false;
     protected $fillable = [
@@ -27,9 +29,9 @@ class Post extends Model
         $villages['count'] = $villages['data']->count();
         return $villages;
     }
-public static function getData($id)
+public static function getData($ids)
 {
-    $item = self::where('id',$id)->get()->toArray();
+    $item = self::whereIn('id',$ids)->get()->toArray();
     if(count($item)>0){
         return $item[0];
     }
@@ -58,5 +60,20 @@ public static function getData($id)
     public function scopeIsMatched($query, $is_matched)
     {
         return $query->where('is_matched', $is_matched);
+    }
+    public function province()
+    {
+        return $this->hasOne(Province::class, 'id', 'province_id');
+    }
+
+    public function county()
+    {
+        return $this->hasOne(County::class, 'id', 'county_id');
+
+    }
+    public function district()
+    {
+        return $this->hasOne(District::class, 'id', 'district_id');
+
     }
 }

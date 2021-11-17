@@ -10,33 +10,24 @@ class Village extends Model
     use Common;
 
     protected $table = 'villages';
-    protected $connection = "default";
+    protected $hidden =[ 'created_at', 'updated_at'];
 
     protected $fillable = [
         'name',
         'vk_id',
         'amar_id',
         'post_id',
-        'partnumber',
-        'tournumber',
-        'ostantitle',
-        'bakhshtitle',
-        'shahrestantitle',
-        'dehestantitle',
-        'roostatitle',
-        'shahrtitle',
-        'abadititle',
-        'shahrroostaabadiid',
-        'status',
-        'province',
-        'county',
-        'district',
-        'rural',
+
     ];
 
-    public static function index()
+    public static function index($out_fields = ['name',
+        'vk_id',
+        'amar_id',
+        'post_id',
+
+    ])
     {
-        $villages['data'] = self::all();
+        $villages['data'] = self::get($out_fields);
         if (empty($villages)) throw new ModelNotFoundException();
         $villages['count'] = $villages['data']->count();
         return $villages;
@@ -61,6 +52,37 @@ class Village extends Model
     {
         return self::create($data);
     }
+
+    public static function joinVillageWithPost()
+    {
+        $query = self::with([
+            'post',
+            'post.province',
+            'post.county',
+            'post.district',
+        ])->get()
+            ->toArray();
+//        dd($query);
+        foreach ($query as $q) {
+            $q = array_merge($q, $q['post']);
+            unset($q['post']);
+            $q['province'] = $q['province']['province'];
+            $q['county'] = $q['county']['county'];
+            $q['district'] = $q['district']['district'];
+
+            dd($q);
+
+
+        }
+//        return
+
+    }
+
+    public function post()
+    {
+        return $this->hasOne(Post::class, 'id', 'post_id');
+    }
+
 
     public static function remove($id)
     {

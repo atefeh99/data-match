@@ -285,5 +285,9 @@ class MainController extends ApiController
         }
 
     }
+    public function exportMatchedInCsv()
+    {
+        MainService::export();
+    }
 
 }
