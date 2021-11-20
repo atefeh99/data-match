@@ -8,6 +8,10 @@ class Post extends Model
 {
 
     protected $table = 'post';
+    protected $connection = "datamatch";
+    protected $hidden =[ 'province_id', 'district_id','county_id'];
+
+
     public $timestamps = false;
     protected $fillable = [
         'is_matched',
@@ -17,15 +21,25 @@ class Post extends Model
     {
 
 
-        $villages['data'] = self::status($status)
-            ->rural($rural_id)
+        $villages['data'] = self::
+//        status($status)->
+            rural($rural_id)
             ->isMatched($is_matched)
             ->get(['name', 'id']);
         if (empty($villages)) throw new ModelNotFoundException();
         $villages['count'] = $villages['data']->count();
         return $villages;
     }
+public static function getData($ids)
+{
+    $item = self::whereIn('id',$ids)->get()->toArray();
+    if(count($item)>0){
+        return $item[0];
+    }
+    throw new ModelNotFoundException();
 
+
+}
 
 
     public static function isMatchedUpdate($id, $value)
@@ -47,5 +61,20 @@ class Post extends Model
     public function scopeIsMatched($query, $is_matched)
     {
         return $query->where('is_matched', $is_matched);
+    }
+    public function province()
+    {
+        return $this->hasOne(Province::class, 'id', 'province_id');
+    }
+
+    public function county()
+    {
+        return $this->hasOne(County::class, 'id', 'county_id');
+
+    }
+    public function district()
+    {
+        return $this->hasOne(District::class, 'id', 'district_id');
+
     }
 }

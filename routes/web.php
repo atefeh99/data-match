@@ -24,3 +24,4 @@ $router->get('villages/not-matched','MainController@notMatchedVillages');
 $router->post('villages/matched','MainController@storeMatchedVillages');
 $router->get('villages/matched','MainController@getMatchedVillages');
 $router->delete('villages/{id}','MainController@deleteMatchedVillages');
+$router->get('villages/export','MainController@exportMatchedInCsv');
