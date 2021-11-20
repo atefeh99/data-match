@@ -14,7 +14,7 @@ class Transfer
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://my-dev.map.ir/transfer/export?table=mym_864e44c99c3b4df87769d174a3476b5c&query=select*from%2520mym_864e44c99c3b4df87769d174a3476b5c&format=csv',
+            CURLOPT_URL => 'https://gnaf-dev.map.ir/transfer/export?table=mym_864e44c99c3b4df87769d174a3476b5c&query=select*from%2520mym_864e44c99c3b4df87769d174a3476b5c&format=csv',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,

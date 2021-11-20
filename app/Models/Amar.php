@@ -18,6 +18,7 @@ class Amar extends Model
 
         $villages['data'] = self::rural($rural_id)
             ->isMatched($is_matched)
+            ->orderBy('name')
             ->get(['name','fid as id', 'lat', 'long']);
         if (empty($villages)) throw new ModelNotFoundException();
         $villages['count'] = $villages['data']->count();
