@@ -17,8 +17,9 @@ class Keshvar extends Model
     public static function index($status, $rural_id, $is_matched)
     {
 
-        $villages['data'] = self::kind($status)
-            ->rural($rural_id)
+        $villages['data'] = self::
+//        kind($status)->
+            rural($rural_id)
             ->isMatched($is_matched)
             ->get(['name_ok as name', 'id', 'shenas_meli']);
         if (empty($villages)) throw new ModelNotFoundException();

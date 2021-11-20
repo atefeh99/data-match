@@ -21,8 +21,9 @@ class Post extends Model
     {
 
 
-        $villages['data'] = self::status($status)
-            ->rural($rural_id)
+        $villages['data'] = self::
+//        status($status)->
+            rural($rural_id)
             ->isMatched($is_matched)
             ->get(['name', 'id']);
         if (empty($villages)) throw new ModelNotFoundException();
