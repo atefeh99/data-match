@@ -2,15 +2,7 @@
 
 namespace App\Http\Services;
 
-use App\Models\{
-    County,
-    District,
-    Province,
-    Rural,
-    Post,
-    Amar,
-    Keshvar
-};
+use App\Models\{County, District, Province, Rural, Post, Amar, Keshvar, VillageView};
 use Carbon\Carbon;
 use App\Models\Village;
 use App\Helpers\Date;
@@ -65,7 +57,7 @@ class MainService
             return false;
         }
 
-        $data['name'] = keshvar::getVillageName($data['vk_id']); //village_name
+        $data['name'] = Post::getVillageName($data['post_id']); //village_name
 
 
 //        $data['creation_date'] = Date::convertCarbonToJalali(Carbon::now());
@@ -109,11 +101,8 @@ class MainService
     public static function export()
     {
 
-        $matched = Village::joinVillageWithPost();
+        VillageView::refreshView();
 
-        dd(
-          $matched
-        );
     }
 
     public static function addPostData()

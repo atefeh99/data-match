@@ -27,7 +27,7 @@ class Village extends Model
 
     ])
     {
-        $villages['data'] = self::get($out_fields);
+        $villages['data'] = self::orderBy('name')->get($out_fields);
         if (empty($villages)) throw new ModelNotFoundException();
         $villages['count'] = $villages['data']->count();
         return $villages;
@@ -53,30 +53,7 @@ class Village extends Model
         return self::create($data);
     }
 
-    public static function joinVillageWithPost()
-    {
-        $query = self::with([
-            'post',
-            'post.province',
-            'post.county',
-            'post.district',
-        ])->get()
-            ->toArray();
-//        dd($query);
-        foreach ($query as $q) {
-            $q = array_merge($q, $q['post']);
-            unset($q['post']);
-            $q['province'] = $q['province']['province'];
-            $q['county'] = $q['county']['county'];
-            $q['district'] = $q['district']['district'];
 
-            dd($q);
-
-
-        }
-//        return
-
-    }
 
     public function post()
     {

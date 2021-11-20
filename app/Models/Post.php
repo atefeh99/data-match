@@ -25,10 +25,16 @@ class Post extends Model
 //        status($status)->
             rural($rural_id)
             ->isMatched($is_matched)
+            ->orderBy('name')
             ->get(['name', 'id']);
         if (empty($villages)) throw new ModelNotFoundException();
         $villages['count'] = $villages['data']->count();
         return $villages;
+    }
+    public static function getVillageName($id)
+    {
+        $village = self::findOrFail($id);
+        return $village->name;
     }
 public static function getData($ids)
 {
