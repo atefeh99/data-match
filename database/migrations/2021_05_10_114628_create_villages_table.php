@@ -13,14 +13,16 @@ class CreateVillagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('villages', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->integer('post_id');
-            $table->integer('vk_id');
-            $table->integer('amar_id');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('villages')) {
+            Schema::createIf('villages', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->integer('post_id');
+                $table->integer('vk_id');
+                $table->integer('amar_id');
+                $table->timestamps();
+            });
+        }
     }
 
     /**
