@@ -38,11 +38,11 @@ class MainService
         $status = 'روستا';
         $is_matched = false;
         if ($dataset_name === 'post') {
-            $query = Post::index($status, $rural_id, $is_matched);
+            $query = Post::index($rural_id, $is_matched);
         } elseif ($dataset_name === 'amar') {
             $query = Amar::index($rural_id, $is_matched);
         } elseif ($dataset_name === 'keshvar') {
-            $query = Keshvar::index($status, $rural_id, $is_matched);
+            $query = Keshvar::index( $rural_id, $is_matched);
         }
         $data = $query['data'];
         $count = $query['count'];
@@ -75,10 +75,19 @@ class MainService
 
     public static function getMatchedVillages()
     {
-        $out_fields = ['name',
+        $out_fields = ['villages.name',
+            'villages.id',
             'vk_id',
             'amar_id',
-            'post_id',];
+            'post_id',
+            'post.ostantitle',
+            'post.shahrestantitle',
+            'post.bakhshtitle',
+            'post.dehestantitle',
+            'amar.name as amar_name',
+            'keshvar.name as keshvar_name'
+
+        ];
         $query = Village::index($out_fields);
         $data = $query['data'];
         $count = $query['count'];

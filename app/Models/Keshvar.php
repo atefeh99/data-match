@@ -14,11 +14,10 @@ class Keshvar extends Model
         'is_matched',
     ];
 
-    public static function index($status, $rural_id, $is_matched)
+    public static function index( $rural_id, $is_matched)
     {
 
         $villages['data'] = self::
-//        kind($status)->
             rural($rural_id)
             ->isMatched($is_matched)
             ->orderBy('name')

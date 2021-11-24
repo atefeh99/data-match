@@ -15,16 +15,16 @@ class Post extends Model
     public $timestamps = false;
     protected $fillable = [
         'is_matched',
+        'ostantitle'
     ];
 
-    public static function index($status, $rural_id, $is_matched)
+    public static function index( $rural_id, $is_matched)
     {
 
 
         $villages['data'] = self::
-//        status($status)->
             rural($rural_id)
-            ->isMatched($is_matched)
+//            ->isMatched($is_matched)
             ->orderBy('name')
             ->get(['name', 'id']);
         if (empty($villages)) throw new ModelNotFoundException();
