@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 class Amar extends Model
 {
     protected $table = "amar";
-    protected $connection = "datamatch";
+    protected $connection = "pgsql";
+
     public $timestamps = false;
     protected $fillable = [
         'is_matched',

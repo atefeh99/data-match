@@ -8,21 +8,21 @@ class Post extends Model
 {
 
     protected $table = 'post';
-    protected $connection = "datamatch";
+    protected $connection = "pgsql";
     protected $hidden =[ 'province_id', 'district_id','county_id'];
 
 
     public $timestamps = false;
     protected $fillable = [
         'is_matched',
+        'ostantitle'
     ];
 
-    public static function index($status, $rural_id, $is_matched)
+    public static function index( $rural_id, $is_matched)
     {
 
 
         $villages['data'] = self::
-//        status($status)->
             rural($rural_id)
             ->isMatched($is_matched)
             ->orderBy('name')

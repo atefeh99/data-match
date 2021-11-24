@@ -7,18 +7,17 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 class Keshvar extends Model
 {
     protected $table = 'keshvar';
-    protected $connection = "datamatch";
+    protected $connection = "pgsql";
 
     public $timestamps = false;
     protected $fillable = [
         'is_matched',
     ];
 
-    public static function index($status, $rural_id, $is_matched)
+    public static function index( $rural_id, $is_matched)
     {
 
         $villages['data'] = self::
-//        kind($status)->
             rural($rural_id)
             ->isMatched($is_matched)
             ->orderBy('name')

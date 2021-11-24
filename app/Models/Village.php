@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 
 
@@ -10,7 +11,9 @@ class Village extends Model
     use Common;
 
     protected $table = 'villages';
-    protected $hidden =[ 'created_at', 'updated_at'];
+    protected $connection = "pgsql";
+
+    protected $hidden = ['created_at', 'updated_at'];
 
     protected $fillable = [
         'name',
@@ -25,11 +28,18 @@ class Village extends Model
         'amar_id',
         'post_id',
 
+
     ])
     {
-        $villages['data'] = self::orderBy('name')->get($out_fields);
+        $villages['data'] = self::select($out_fields)
+            ->leftjoin('post', 'post_id', '=', 'post.id')
+            ->leftjoin('keshvar', 'vk_id', '=', 'keshvar.id')
+            ->leftjoin('amar', 'amar_id', '=', 'amar.fid')
+            ->orderBy('villages.name')
+            ->get()
+            ->toArray();
         if (empty($villages)) throw new ModelNotFoundException();
-        $villages['count'] = $villages['data']->count();
+        $villages['count'] = count($villages['data']);
         return $villages;
     }
 
@@ -52,14 +62,6 @@ class Village extends Model
     {
         return self::create($data);
     }
-
-
-
-    public function post()
-    {
-        return $this->hasOne(Post::class, 'id', 'post_id');
-    }
-
 
     public static function remove($id)
     {
