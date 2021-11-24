@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 class Province extends Model
 {
     protected $table = "dims.province";
-    protected $connection = "datamatch";
+//    protected $connection = "datamatch";
 
 
 

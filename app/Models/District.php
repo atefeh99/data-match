@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 class District extends Model
 {
     protected $table = "dims.district";
-    protected $connection = "datamatch";
+//    protected $connection = "datamatch";
 
 
     public static function index($county_id)

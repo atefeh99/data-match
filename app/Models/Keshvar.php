@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\{Model, ModelNotFoundException};
 class Keshvar extends Model
 {
     protected $table = 'keshvar';
-    protected $connection = "datamatch";
+//    protected $connection = "datamatch";
 
     public $timestamps = false;
     protected $fillable = [

@@ -11,7 +11,7 @@ class Village extends Model
     use Common;
 
     protected $table = 'villages';
-    protected $connection = "datamatch";
+//    protected $connection = "datamatch";
 
     protected $hidden = ['created_at', 'updated_at'];
 
