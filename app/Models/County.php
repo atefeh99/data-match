@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\{Model,  ModelNotFoundException};
 class  County extends Model
 {
     protected $table = "dims.county";
-//    protected $connection = "datamatch";
+    protected $connection = "pgsql";
 
 
     public static function index($province_id)

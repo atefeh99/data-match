@@ -8,7 +8,7 @@ class Post extends Model
 {
 
     protected $table = 'post';
-//    protected $connection = "datamatch";
+    protected $connection = "pgsql";
     protected $hidden =[ 'province_id', 'district_id','county_id'];
 
 
