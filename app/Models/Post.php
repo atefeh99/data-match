@@ -24,7 +24,7 @@ class Post extends Model
 
         $villages['data'] = self::
             rural($rural_id)
-//            ->isMatched($is_matched)
+            ->isMatched($is_matched)
             ->orderBy('name')
             ->get(['name', 'id']);
         if (empty($villages)) throw new ModelNotFoundException();
