@@ -19,7 +19,6 @@ class CreateVillagesView extends Migration
                     SELECT villages.name,villages.post_id,villages.vk_id,villages.amar_id,
                     post.partnumber,post.tournumber, post.ostantitle, post.bakhshtitle,post.shahrestantitle,
                     post.dehestantitle,post.roostatitle,post.shahrtitle,post.abadititle,post.shahrroostaabadiid,post.status
-                    , dims.province.province, dims.county.county, dims.district.district
                    from villages
                     JOIN post on villages.post_id=post.id
 
