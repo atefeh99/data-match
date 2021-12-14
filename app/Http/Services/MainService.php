@@ -80,10 +80,10 @@ class MainService
             'vk_id',
             'amar_id',
             'post_id',
-            'post.ostantitle',
-            'post.shahrestantitle',
-            'post.bakhshtitle',
-            'post.dehestantitle',
+            'post.province_name',
+            'post.county_name',
+            'post.district_name',
+            'post.rural_id',
             'amar.name as amar_name',
             'keshvar.name as keshvar_name'
 
