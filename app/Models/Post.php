@@ -25,7 +25,7 @@ class Post extends Model
             rural($rural_id)
             ->isMatched($is_matched)
             ->orderBy('name')
-            ->get(['name', 'id','is_matched']);
+            ->get(['name', 'id']);
         if (empty($villages)) throw new ModelNotFoundException();
         $villages['count'] = $villages['data']->count();
         return $villages;
