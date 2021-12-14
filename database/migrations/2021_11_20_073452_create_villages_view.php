@@ -35,5 +35,5 @@ class CreateVillagesView extends Migration
      */
     public function down()
     {
-        DB::statement("DROP MATERIALIZED VIEW IF EXISTS villages_view");    }
+        DB::statement("DROP MATERIALIZED VIEW villages_view");    }
 }

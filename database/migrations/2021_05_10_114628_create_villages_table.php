@@ -14,7 +14,7 @@ class CreateVillagesTable extends Migration
     public function up()
     {
         if (!Schema::hasTable('villages')) {
-            Schema::createIf('villages', function (Blueprint $table) {
+            Schema::create('villages', function (Blueprint $table) {
                 $table->id();
                 $table->string('name');
                 $table->integer('post_id');

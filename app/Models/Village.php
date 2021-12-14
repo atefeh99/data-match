@@ -14,8 +14,10 @@ class Village extends Model
     protected $connection = "pgsql";
 
     protected $hidden = ['created_at', 'updated_at'];
+    protected $primaryKey = 'id';
 
     protected $fillable = [
+        'id',
         'name',
         'vk_id',
         'amar_id',
@@ -34,7 +36,7 @@ class Village extends Model
         $villages['data'] = self::select($out_fields)
             ->leftjoin('post', 'post_id', '=', 'post.id')
             ->leftjoin('keshvar', 'vk_id', '=', 'keshvar.id')
-            ->leftjoin('amar', 'amar_id', '=', 'amar.fid')
+            ->leftjoin('amar', 'amar_id', '=', 'amar.id')
             ->orderBy('villages.name')
             ->get()
             ->toArray();
@@ -60,7 +62,8 @@ class Village extends Model
 
     public static function createItem($data)
     {
-        return self::create($data);
+        $item = self::create($data);
+        return $item;
     }
 
     public static function remove($id)

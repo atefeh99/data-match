@@ -15,12 +15,11 @@ class Post extends Model
     public $timestamps = false;
     protected $fillable = [
         'is_matched',
-        'ostantitle'
+        'province_name'
     ];
 
     public static function index( $rural_id, $is_matched)
     {
-
 
         $villages['data'] = self::
             rural($rural_id)
@@ -54,9 +53,9 @@ public static function getData($ids)
         $item->update(['is_matched' => $value]);
     }
 
-    public function scopeStatus($query, $status)
+    public function scopeStatus($query, $type)
     {
-        return $query->where('status', $status);
+        return $query->where('type', $type);
     }
 
     public function scopeRural($query, $rural_id)
