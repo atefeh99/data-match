@@ -83,6 +83,7 @@ class MainService
             'post.province_name',
             'post.county_name',
             'post.district_name',
+            'post.rural_name',
             'post.rural_id',
             'amar.name as amar_name',
             'keshvar.name as keshvar_name'
