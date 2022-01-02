@@ -66,7 +66,7 @@ class MainService
         Village::createItem($data);
 
         Post::isMatchedUpdate($data['post_id'], true);
-        if (isset($data['vk_id'])){
+        if (isset($data['vk_id'])) {
             Keshvar::isMatchedUpdate($data['vk_id'], true);
         }
         Amar::isMatchedUpdate($data['amar_id'], true);
@@ -102,7 +102,9 @@ class MainService
         $item = Village::remove($id);
         if ($item) {
             Post::isMatchedUpdate($data['post_id'], false);
-            Keshvar::isMatchedUpdate($data['vk_id'], false);
+            if ($data['vk_id']!="null") {
+                Keshvar::isMatchedUpdate($data['vk_id'], false);
+            }
             Amar::isMatchedUpdate($data['amar_id'], false);
             return true;
         } else {

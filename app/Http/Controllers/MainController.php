@@ -136,7 +136,7 @@ class MainController extends ApiController
                 }
                 if ($item['left'] == 'vk_id' && $item['operator'] == '=') {
                     $validate = Validator::make(['vk_id' => (float)$item['right']], [
-                        'vk_id' => 'numeric'
+                        'vk_id' => 'numeric|nullable'
                     ]);
                     if ($validate->fails()) {
                         return $this->respondInvalidParams('1008', $validate->errors(), 'bad request');
