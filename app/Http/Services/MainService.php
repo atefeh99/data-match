@@ -100,10 +100,9 @@ class MainService
     public static function deleteMatchedVillages($id, $data)
     {
         $item = Village::remove($id);
-
         if ($item) {
             Post::isMatchedUpdate($data['post_id'], false);
-            if (!isset($data['vk_id'])) {
+            if ($data['vk_id']!="null") {
                 Keshvar::isMatchedUpdate($data['vk_id'], false);
             }
             Amar::isMatchedUpdate($data['amar_id'], false);
