@@ -67,7 +67,6 @@ class MainService
 
         Post::isMatchedUpdate($data['post_id'], true);
         if (isset($data['vk_id'])){
-            dd('hi');
             Keshvar::isMatchedUpdate($data['vk_id'], true);
         }
         Amar::isMatchedUpdate($data['amar_id'], true);
