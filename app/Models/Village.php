@@ -52,11 +52,19 @@ class Village extends Model
      */
     public static function getVillageCount($post_id, $vk_id, $amar_id)
     {
+        if(!empty($vk_id)) {
+            return self::where('post_id', $post_id)
+                ->orWhere('vk_id', $vk_id)
+                ->orWhere('amar_id', $amar_id)
+                ->count();
+        }else{
+            return self::where('post_id', $post_id)
+                ->orWhere('amar_id', $amar_id)
+                ->count();
+        }
 
-        return self::where('post_id', $post_id)
-            ->orWhere('vk_id', $vk_id)
-            ->orWhere('amar_id', $amar_id)
-            ->count();
+
+
 
     }
 

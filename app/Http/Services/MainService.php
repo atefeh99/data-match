@@ -42,7 +42,7 @@ class MainService
         } elseif ($dataset_name === 'amar') {
             $query = Amar::index($rural_id, $is_matched);
         } elseif ($dataset_name === 'keshvar') {
-            $query = Keshvar::index( $rural_id, $is_matched);
+            $query = Keshvar::index($rural_id, $is_matched);
         }
         $data = $query['data'];
         $count = $query['count'];
@@ -51,8 +51,8 @@ class MainService
 
     public static function storeMatchedVillages($data)
     {
-
-        $count = Village::getVillageCount($data['post_id'], $data['vk_id'], $data['amar_id']);
+        $vk_id = isset($data['vk_id']) ? $data['vk_id'] : null;
+        $count = Village::getVillageCount($data['post_id'], $vk_id, $data['amar_id']);
         if ($count != 0) {
             return false;
         }
@@ -66,7 +66,10 @@ class MainService
         Village::createItem($data);
 
         Post::isMatchedUpdate($data['post_id'], true);
-        Keshvar::isMatchedUpdate($data['vk_id'], true);
+        if (isset($data['vk_id'])){
+            dd('hi');
+            Keshvar::isMatchedUpdate($data['vk_id'], true);
+        }
         Amar::isMatchedUpdate($data['amar_id'], true);
 
         return true;

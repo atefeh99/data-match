@@ -23,7 +23,7 @@ trait RulesTrait
             MainController::class => [
                 'storeMatchedVillages' => [
                     'post_id' => 'numeric|required',
-                    'vk_id' => 'numeric|required',
+                    'vk_id' => 'numeric|nullable',
                     'amar_id' => 'numeric|required'
 
 

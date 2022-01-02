@@ -6,9 +6,10 @@
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-curl": "*",
+        "doctrine/dbal": "^3.2",
         "laravel/lumen-framework": "^8.0",
-        "morilog/jalali": "3.*",
-      "ext-curl": "*"
+        "morilog/jalali": "3.*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
