@@ -242,7 +242,7 @@ class MainController extends ApiController
 
     public function storeMatchedVillages(Request $request)
     {
-        if ($request->has(['amar_id', 'post_id', 'vk_id'])) {
+        if ($request->has(['amar_id', 'post_id'])) {
             $data = self::checkRules($request, __FUNCTION__, 4000);
             if (MainService::storeMatchedVillages($data)) {
                 return $this->respondSuccessCreate(null, trans('messages.custom.matched'));
