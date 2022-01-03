@@ -14,7 +14,7 @@ class Province extends Model
 
     public static function index()
     {
-        $provinces['data'] = self::all('province as name', 'id');
+        $provinces['data'] = self::orderBy('province')->get(['province as name', 'id']);
         if (empty($provinces)) throw new ModelNotFoundException();
         $provinces['count'] = $provinces['data']->count();
         return $provinces;

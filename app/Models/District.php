@@ -12,7 +12,7 @@ class District extends Model
 
     public static function index($county_id)
     {
-        $districts['data'] = self::filteredByCounty($county_id)->get(['district as name', 'id']);
+        $districts['data'] = self::filteredByCounty($county_id)->orderBy('district')->get(['district as name', 'id']);
         if (empty($districts)) throw new ModelNotFoundException();
         $districts['count'] = $districts['data']->count();
         return $districts;

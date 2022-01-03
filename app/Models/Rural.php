@@ -12,7 +12,7 @@ class Rural extends Model
 
     public static function index($district_id)
     {
-        $rurals['data'] = self::filteredByDistrict($district_id)->get(['rural as name', 'id']);
+        $rurals['data'] = self::filteredByDistrict($district_id)->orderBy('rural')->get(['rural as name', 'id']);
         if (empty($rurals)) throw new ModelNotFoundException();
         $rurals['count'] = $rurals['data']->count();
         return $rurals;

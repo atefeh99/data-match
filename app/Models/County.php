@@ -12,7 +12,7 @@ class  County extends Model
 
     public static function index($province_id)
     {
-        $counties['data'] = self::FilteredByProvince($province_id)->get(['county as name','id']);
+        $counties['data'] = self::FilteredByProvince($province_id)->orderBy('county')->get(['county as name','id']);
         if (empty($counties)) throw new ModelNotFoundException();
         $counties['count'] = $counties['data']->count();
         return $counties;
